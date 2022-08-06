@@ -5,6 +5,7 @@ import com.posting2.board.Service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -43,4 +44,16 @@ public class BoardController {
         boardService.savePost(boardDto);
         return "redirect:/";
     }
+
+    @GetMapping("/post/{id}")
+    public String detail(@PathVariable("id") Long id, Model model){
+        BoardDto boardDto = boardService.getPost(id);
+        model.addAttribute("post", boardDto);
+        return "board/detail.html";
+    }
+    /*
+    각 게시글을 클릭하면 /post/{id}으로 Get 요청을 합니다. (만일 1번 글을 클릭하면 /post/1로 접속됨)
+    BoardController에 detail()을 아래와 같이 구현하며, 요청받았을 때 해당 id의 데이터가 View로 전달되도록 만들어줍니다.
+     */
+
 }

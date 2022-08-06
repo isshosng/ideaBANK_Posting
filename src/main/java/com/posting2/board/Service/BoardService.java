@@ -52,4 +52,23 @@ public class BoardService {
         }
         return boardDtoList;
     } // 게시물의 목록을 가져오는 getBoardList()를 만들었음
+
+    /*
+    게시글을 클릭하면 게시물의 내용이 화면에 출력되어야 합니다.
+    그러려면 게시글의 id를 받아 해당 게시글의 데이터만 가져와 화면에 뿌려주어야 합니다.
+    이를 getPost()를 구현하여 해결합니다.
+     */
+    @Transactional
+    public BoardDto getPost(Long id){
+        Board board = boardRepository.findById(id).get();
+
+        BoardDto boardDto = BoardDto.builder()
+                .id(board.getId())
+                .author(board.getAuthor())
+                .title(board.getTitle())
+                .content(board.getContent())
+                .createdDate(board.getCreatedDate())
+                .build();
+        return boardDto;
+    }
 }
