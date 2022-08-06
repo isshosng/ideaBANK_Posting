@@ -4,10 +4,7 @@ import com.posting2.board.Dto.BoardDto;
 import com.posting2.board.Service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -75,4 +72,10 @@ public class BoardController {
     /*
     위 작업을 마치면 HiddenhttpMethodFilter를 Bean으로 등록하여, @PutMapping과 @DeleteMapping이 작동할 수 있도록 해줍니다.
      */
+
+    @DeleteMapping("/post/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        boardService.deletePost(id);
+        return "redirect:/";
+    }
 }

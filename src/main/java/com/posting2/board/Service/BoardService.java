@@ -71,4 +71,13 @@ public class BoardService {
                 .build();
         return boardDto;
     }
+
+    @Transactional
+    public void deletePost(Long id){
+        boardRepository.deleteById(id);
+    }
+    /*
+    글을 조회하는 페이지에서 '삭제' 버튼을 누르면, /post/{id}으로 delete 요청을 합니다. (만약 1번 글에서 '삭제' 버튼을 클릭하면 /post/1로 접속됩니다.)
+    id 값을 사용하여, 해당 글을 데이터베이스에서 삭제하는 것을 구현. BoardController 클래스에 delete()를 추가해야함
+     */
 }
