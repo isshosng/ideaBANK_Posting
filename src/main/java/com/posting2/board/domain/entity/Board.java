@@ -1,4 +1,4 @@
-package com.posting2.board.domain;
+package com.posting2.board.domain.entity;
 
 
 import lombok.AccessLevel;
